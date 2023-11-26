@@ -17,10 +17,15 @@ public class AddNewPetRequestUtils {
     private static final String addNewPetHeaderValue = "application/json";
     public static int ID;
     Request s = new Request();
+    HttpHelper hh = new HttpHelper();
 
     public JsonNode addNewPet(RequestType requestType, String id, String name, String categoryName) {
-        setCommonRequest(id, name, categoryName);
-        return HttpHelper.sendPOSTJSONRequest(HttpUtils.setURL(requestType, id), s.getCommonRequest(), addNewPetHeaderName, addNewPetHeaderValue, requestType);
+        setNewPetRequest(id, name, categoryName);
+        return hh.sendJSONRequest(HttpUtils.setURL(requestType, id), s.getCommonRequest(), addNewPetHeaderName, addNewPetHeaderValue, requestType);
+    }
+
+    public void checkPet(RequestType requestType, String id) {
+        s.setCommonRequest(String.valueOf(hh.sendJSONRequest(HttpUtils.setURL(requestType, id), s.getCommonRequest(), addNewPetHeaderName, addNewPetHeaderValue, requestType)));
     }
 
     private void randomIDgenerator() {
@@ -28,7 +33,17 @@ public class AddNewPetRequestUtils {
         ID = rand.nextInt(1000);
     }
 
-    private void setCommonRequest(String id, String name, String categoryName) {
+    private void setPetCheckerRequest(String id) {
+        String requestString = readFromInputStream(AddNewPetRequestUtils.class.getResourceAsStream("/request_samples/checkPet.json"));
+        if (id != null) {
+            requestString = requestString.replaceAll("##ID##", id);
+        } else {
+            throwNPE("check");
+        }
+        s.setCommonRequest(requestString);
+    }
+
+    private void setNewPetRequest(String id, String name, String categoryName) {
         String requestString = readFromInputStream(AddNewPetRequestUtils.class.getResourceAsStream("/request_samples/addNewPet.json"));
         if (id != null) {
             if (id.equals("randomID")) {
@@ -63,6 +78,7 @@ public class AddNewPetRequestUtils {
             case "id" -> throw new NullPointerException("Nincs ID, így nem tudok hozzáadni állatot");
             case "categoryName" ->
                     throw new NullPointerException("Nincs kategória név, így nem tudok hozzáadni állatot");
+            case "check" -> throw new NullPointerException("Nincs ID így nincs mit ellenőrizni");
         }
     }
 

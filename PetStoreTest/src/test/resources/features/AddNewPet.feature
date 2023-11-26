@@ -9,3 +9,6 @@ Jellemző: Hozzáadok a nyilvántartáshoz egy állatot
       |id|name|categoryName|
       |randomID|Tyson|kutyát|
       |randomID|Füles|cicát|
+
+
+    #TODO: Megcsinálni a logolást a commonban, hogy szép legyen, de túl fáradt vagyok, hogy megtaláljam.

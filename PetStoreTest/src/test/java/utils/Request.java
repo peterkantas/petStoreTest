@@ -8,7 +8,8 @@ public class Request {
     private String commonRequest;
 
     public JsonNode getCommonRequestJsonNode() throws JsonProcessingException {
-        return HttpJsonUtil.castStringToJsonNode(commonRequest);
+        HttpJsonUtil hju = new HttpJsonUtil();
+        return hju.castStringToJsonNode(commonRequest);
     }
 
     public String getCommonRequest() {

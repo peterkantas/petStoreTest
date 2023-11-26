@@ -19,4 +19,9 @@ public class AddNewPetStepDefs {
     public void checkResponse() throws JsonProcessingException {
         apru.assertResponse();
     }
+
+    @Akkor("Ellenőrzöm az állat meglétét")
+    public void checkPet() {
+        apru.checkPet(RequestType.GET, String.valueOf(AddNewPetRequestUtils.ID));
+    }
 }
