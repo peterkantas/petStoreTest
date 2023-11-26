@@ -1,15 +1,22 @@
 package newPetTest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import communication.common.RequestType;
 import io.cucumber.java.hu.Akkor;
-import org.w3c.dom.Document;
+
 
 public class AddNewPetStepDefs {
-    static Document commonResponse;
+    static JsonNode commonResponse;
     AddNewPetRequestUtils apru = new AddNewPetRequestUtils();
 
     @Akkor("Hozzáadok a nyilvántartáshoz {string} azonosítóval {string} névvel egy {string}")
-    public void addNewPetToStore(String id, String name, String categoryName) {
+    public void addNewPetToStore(String id, String name, String categoryName) throws JsonProcessingException {
         commonResponse = apru.addNewPet(RequestType.POST, id, name, categoryName);
+    }
+
+    @Akkor("Ellenőrzöm a választ")
+    public void checkResponse() throws JsonProcessingException {
+        apru.assertResponse();
     }
 }

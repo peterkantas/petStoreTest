@@ -8,9 +8,6 @@ import java.util.stream.Collectors;
 
 public class FileUtils {
     public static String readFromInputStream(InputStream inputStream) {
-        return new BufferedReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
     }
 }
