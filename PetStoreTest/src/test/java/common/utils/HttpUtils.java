@@ -1,4 +1,4 @@
-package utils;
+package common.utils;
 
 import communication.common.RequestType;
 
