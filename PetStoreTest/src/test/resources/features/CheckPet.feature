@@ -1,5 +1,6 @@
 #language:hu
 @CHECK
+@REGRESSION
 Jellemző: Ellenőrzöm az állat meglétét a korábbi
 
   Forgatókönyv vázlat: Állat hozzáadása

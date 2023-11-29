@@ -1,5 +1,6 @@
 #language:hu
 @DELETE
+@REGRESSION
 Jellemző: Ellenőrzöm az állat meglétét a korábbi
 
   @SMOKE

@@ -1,5 +1,6 @@
 #language:hu
 @ADD
+@REGRESSION
 Jellemző: Hozzáadok a nyilvántartáshoz egy állatot
 
   Forgatókönyv vázlat: Állat hozzáadása
